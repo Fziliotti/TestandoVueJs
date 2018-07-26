@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Primeiro Contato com VueJs</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+
+	<div id="app" class="container">
+		<h1 v-show="status">{{titulo}}</h1>
+		<button :class="btnClassLimpar" :style="btnStyleLimpar">Limpar</button>
+		<button :class="btnClassEnviar" :style="btnStyleEnviar">Enviar</button>
+		<button v-bind:class="btnClassAtualizar" v-bind:style="btnStyleAtualizar">Atualizar</button>
+		<button v-bind:class="btnClassBuscar" v-bind:style="btnStyleBuscar">Buscar?</button>
+	</div>
+
+
+	<div id="app2" class="container pt-5">
+		<h1> {{titulo}}</h1>
+
+		<form action="http://google.com">
+			<button type="submit" class="btn btn-primary" v-on:click.prevent.stop="enviar()">Limpar</button>
+		</form>
+	</div>
+
+
+	<div id="app-4" class="container pt-5">
+		<h1>{{titulo}}</h1>
+		<ul>
+			<li v-for="todo in todos">
+				{{ todo.text }}
+			</li>
+		</ul>
+		<button class="btn btn-primary"  v-on:click="adicionarFinal()">
+			adicionar Final
+		</button>
+
+		<button class="btn btn-primary"  v-on:click="adicionarInicio()">
+			adicionar Inicio
+		</button>
+	</div>
+
+
+	<div id="app-5" class="container pt-5">
+		<h1>{{ message }}</h1>
+		<button v-on:click="reverseMessage">Reverse Message</button>
+	</div>
+
+
+	<div id="app-6" class="container pt-5">
+		<p>{{ message }}</p>
+		<input type="text" v-model="message">
+	</div>
+
+
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+		//elemento pai el e uma variavel no campo data, isso é padrao do vuejs
+		var app =  new Vue({
+			el:"#app",
+			data:{
+				status:true,
+				titulo: "Aula 01 - VueJs do jeito ninja!",
+				btnClassLimpar: 'btn btn-danger btn-lg',
+				btnClassEnviar: 'btn btn-primary',
+				btnClassAtualizar: {
+					'btn btn-dark' : true,
+					'btn-sm': false
+				},
+				btnClassBuscar: [
+				'btn','btn-warning', {'btn-lg' : true}
+				],
+				btnStyleBuscar: 'font-size: 22px; color:green;',
+				btnStyleAtualizar: 'font-size: 25px',
+				btnStyleEnviar: 'font-size: 25px',
+				btnStyleLimpar: 'font-size: 20px'
+			}
+		});
+
+		var app2 =  new Vue({
+			el:"#app2",
+			data:{
+				titulo: "Testando os metodos do VueJs"
+			},
+			methods: {
+				enviar(){
+					alert("Metodo dentro do objeto Vue!");
+				}
+			}
+		});
+
+		var app4 = new Vue({
+			el: '#app-4',
+			data: {
+				titulo: "Lista de afazeres usando o Vue",
+				todos: [
+				{ text: 'Learn JavaScript' },
+				{ text: 'Learn Vue' },
+				{ text: 'Build something awesome' }
+				],
+				adicionarFinal(){
+					this.todos.push({ text: 'Learn JavaScript' });
+				},
+				adicionarInicio(){
+					this.todos.unshift({ text: 'Learn JavaScript' });
+				}
+			}
+		});
+
+		var app5 = new Vue({
+			el: '#app-5',
+			data: {
+				message: 'Meu nome é Fabricio Ziliotti'
+			},
+			methods: {
+				reverseMessage: function () {
+					this.message = this.message.split('').reverse().join('')
+				}
+			}
+		});
+
+		var app6 = new Vue({
+			el: '#app-6',
+			data: {
+				message: 'Exemplo de Reatividade do VueJs'
+			}
+		});
+	</script>
+
+</body>
+</html>
