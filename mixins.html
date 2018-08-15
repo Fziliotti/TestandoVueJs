@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Mixins Com Vue</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+
+	
+	<div class="container" id="app">
+		<h1 class="display-3">{{titulo}}</h1>
+
+		<button class="btn btn-primary" @click.stop.prevent="getUsers()">get Users</button>
+		<hr>
+		<button class="btn btn-secondary" @click.stop.prevent="maisUmMetodo()">Mais Um Metodo</button>
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<script>
+		//mixin nada mais é do que um objeto que contem elementos semelhantes as propriedades do objeto Vue, e poderão ser reutilizados
+
+		// obs1: SE TIVER UMA funcao semelhante ao mixin dentro dos parametros do Vue, a funcao do mixin é sobrescrita pelo do vue
+		// obs2: se usar hooks, o hook do mixin vai ser rodado e depois do Vue tambem é rodado
+		
+		var mixin = {
+			methods: {
+				getUsers(){
+					console.log("get Users from mixin");
+				}
+			},
+			created(){
+				console.log("created from MIXIN!");
+			}
+		}
+
+
+		app = new Vue({
+			el: "#app",
+			mixins: [mixin],
+			methods: {
+				maisUmMetodo(){
+					console.log("mais um metodo");
+				},
+				getUsers(){
+					console.log("get Users from view");
+				}
+			},
+			data:{
+				titulo: "Mixins",
+			},
+			created(){
+				console.log("created from Vue!");
+			}
+		});
+	</script>
+</body>
+</html>
+
+
+

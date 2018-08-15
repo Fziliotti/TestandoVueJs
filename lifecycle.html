@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Primeiro Contato com VueJs</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container">
+		<h5>"Em programação de computadores, o termo hooking (enganchar) cobre uma série de técnicas utilizadas para modificar ou melhorar o comportamento de um sistema operacional, aplicações ou outros componentes de software através da interceptação de chamadas de funções, mensagens ou eventos passados entre componentes de software. O código que manipula tais chamadas de funções, mensagens ou eventos interceptados é chamado de "hook" (gancho)."</h5>
+		<h5>
+			Hook é um termo usado para indicar uma inserção de código em alguma operação padrão para fornecer personalização. Nos confins da plataforma Jelastic, você tem permissão para executar seu script personalizado antes/depois de uma operação de compilação/implantação de aplicação.
+		</h5>
+	</div>
+
+
+	<div id="app">
+		<h1>{{titulo}}</h1>
+
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<script>
+		app = new Vue({
+			el: "#app",
+			data:{
+				titulo: "Lifecycle hooks",
+
+			}
+		});
+	</script>
+</body>
+</html>
+
+
+

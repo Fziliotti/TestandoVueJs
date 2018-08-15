@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Primeiro Contato com VueJs</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+	
+
+	<div id="app">
+		<div class="container">
+			<h1 class="text-center mt-5 ">{{titulo}}</h1>
+			<input-form></input-form>
+			<my-list></my-list>
+		</div>
+	</div>
+
+
+	<template id="form">
+		<div class="card my-3 w-75 mx-auto">
+			<div class="card-block p-3">
+				<div class="form-group">
+					<label for="">Titulo</label>
+					<input v-model="title"
+					type="text" class="form-control">	
+				</div>
+				<button @click.stop.prevent="submit()" class="btn btn-primary">ENVIAR</button>
+			</div>
+		</div>
+	</template>
+
+	<template id="list">
+		<ul class="list-group w-75 mx-auto">
+			<li v-for="item in list" 
+			class="list-group-item">{{item.title}}</li>
+		</ul>
+	</template>
+
+
+
+
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+	
+		Vue.component('input-form', {
+			template:'#form',
+			data(){
+				return{
+					title:""
+				}
+			},
+			methods: {
+				submit(){
+					this.$eventHub.$emit('submit', this.title);
+				}
+			}
+		});
+
+		Vue.component('my-list', {
+			template:'#list',
+			data() {
+				return {
+					list: [{title: 'Ir a Festa'}]
+				}
+			},
+			//esse created é um hook que ira rodar a rotina de escutar o submite do eventHub e atualista a list colocando o title no array
+			created(){
+				var self = this;
+				console.log(self)
+				this.$eventHub.$on('submit', function(title){
+					if(title){
+						self.list.push({ title:title});
+					}
+				});
+			}
+		});
+
+		// cria um prototipo no objeto Vue
+		Vue.prototype.$eventHub = new Vue();
+
+		var app =  new Vue({
+			el:"#app",
+			data:{
+				titulo:"Usando componentes nao parentes!"
+			}
+		});
+	</script>
+
+</body>
+</html>

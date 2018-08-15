@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Primeiro Contato com VueJs</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<style>
+	.menuTopo{
+		background-image: linear-gradient(to right, #111, #222, #333);
+	}
+</style>
+
+<body>
+	
+
+	<div id="app">
+		<navbar class="mb-3"> </navbar>
+		<div class="container">
+			<h1 style="text-shadow: #000 1px 3px 5px;" class="text-center display-2">TITULO</h1>
+			<p class="display-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti incidunt accusantium id quisquam nisi, quas dicta rerum. Eveniet facere temporibus rerum laboriosam quis sed nam, repudiandae a totam, iure placeat assumenda unde maxime cum tempore. Consequatur praesentium laboriosam aliquid sapiente! Temporibus sunt incidunt, quibusdam iste dolores laborum quos nobis, assumenda delectus recusandae eaque quae maxime et autem tempore voluptas provident repellendus eveniet harum adipisci, dicta. Nihil, saepe, similique. Quia voluptatibus mollitia in autem illum suscipit maiores eaque deserunt earum accusantium cupiditate repellendus eius, animi distinctio, veniam eos laboriosam dolore dignissimos iusto architecto eum ex! Suscipit iure minus explicabo magni nobis!</p>
+		</div>
+	</div>
+
+
+	<template id="nav">
+		<nav class="menuTopo p-4 navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
+				<a class="navbar-brand" href="#">Components VUEJS</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<menu-bar></menu-bar>
+				</div>
+			</div>
+		</nav>
+	</template>
+
+	<template id="menu">
+		<ul class="navbar-nav">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Features</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Pricing</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#">Disabled</a>
+			</li>
+		</ul>
+	</template>
+
+
+
+
+
+		
+
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+		//elemento pai el e uma variavel no campo data, isso é padrao do vuejs
+		Vue.component('navbar',{
+			template:'#nav'
+		});
+
+		Vue.component('menu-bar',{
+			template:'#menu'
+		});
+
+		var app =  new Vue({
+			el:"#app",
+			data:{
+			}
+		});
+	</script>
+
+</body>
+</html>
